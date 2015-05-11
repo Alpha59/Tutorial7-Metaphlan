@@ -1,0 +1,23 @@
+#Marker_name	Number of hits
+concat	35
+16s_reps_bac	10
+enolase	6
+ef2_noOuts	3
+V385	2
+V367	2
+metk_noOuts	2
+hsp70	2
+V64	2
+V387	1
+V743	1
+V696	1
+ef1aLike	1
+V181	1
+V302	1
+V522	1
+V146	1
+V505	1
+V20	1
+V441	1
+V49	1
+V616	1

@@ -1,0 +1,41 @@
+#!/bin/bash
+#$ -S /bin/bash
+#$ -cwd
+#$ -V
+#$ -M eml75@drexel.edu
+#$ -P nsftuesPrj
+#$ -l h_rt=6:00:00
+#$ -l h_vmem=8G
+#$ -q all.q
+
+PATH=/mnt/HA/groups/nsftuesGrp/.local/bin:$PATH
+# PATH=$HOME/Tutorial7-Metaphlan/metaphlan/graphlan:$PATH
+
+# DATADIR=$HOME/tutorial07/data
+# mkdir -p $DATADIR
+
+# ---Keep this---
+
+. /etc/profile.d/modules.sh
+module load shared
+module load proteus
+module load sge/univa
+module load gcc/4.8.1
+
+# module load bowtie2/2.2.5
+
+# ---Keep this---
+
+cd metaphlan
+
+# export PATH=`pwd`:$PATH
+# mpa_dir=`pwd`
+
+# Below is the command to create a tree diagram for all samples merged
+
+mkdir -p tmp
+
+plotting_scripts/metaphlan2graphlan.py output/merged_abundance_table_1.txt  --tree_file tmp/merged.tree.txt --annot_file tmp/merged.annot.txt
+./graphlan_annotate.py --annot tmp/merged.annot.txt tmp/merged.tree.txt tmp/merged.xml
+./graphlan.py --dpi 200 tmp/merged.xml output_images/tree_file.png
+

@@ -1,0 +1,70 @@
+#!/bin/bash
+#$ -S /bin/bash
+#$ -cwd
+#$ -V
+#$ -M eml75@drexel.edu
+#$ -P nsftuesPrj
+#$ -pe openmpi_ib 16
+#$ -l h_rt=6:00:00
+#$ -l h_vmem=8G
+#$ -l h_vmem=6G
+#$ -q all.q@@amdhosts
+
+PATH=/mnt/HA/groups/nsftuesGrp/.local/bin:$PATH
+
+# ---Keep this---
+
+. /etc/profile.d/modules.sh
+module load shared
+module load proteus
+module load sge/univa
+module load gcc/4.8.1
+
+module load bowtie2/2.2.5
+
+# ---Keep this---
+
+ids=( \
+SRR492065 \
+SRR492066 \
+SRR492182 \
+SRR492183 \
+SRR492184 \
+SRR492185 \
+SRR492186 \
+SRR492187 \
+SRR492188 \
+SRR492189 \
+SRR492190 \
+SRR492191 \
+SRR492192 \
+SRR492193 \
+SRR492194 \
+SRR492195 \
+SRR492196 \
+SRR492197
+)
+
+cd metaphlan
+
+export PATH=`pwd`:$PATH
+mpa_dir=`pwd`
+
+# mkdir -p profiled_samples
+# mkdir -p bowtieout
+
+# This file is optional. Only edit this if you will be saving Bowtie files and rerunning them with different options
+# This is a way to save time, because you only have to run the Bowtie procedure once, but you can keep using it for txt files
+
+mkdir -p new_profiles
+
+
+for i in "${ids[@]}"
+
+do
+
+ ./metaphlan.py  bowtieout/TD_$i.bt2out --bowtie2db bowtie2db/mpa --bt2_ps very-sensitive --nproc 5  --input_type bowtie2 \
+   > new_samples/TD_$i.txt
+
+done
+

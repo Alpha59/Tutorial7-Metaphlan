@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.5+" codebase="http://edhar.genomecenter.ucdavis.edu/~koadman/phylosift/forester/">
+    <information>
+        <title>Archaeopteryx tree viewer</title>
+        <vendor>Christian Zmasek, repackaged by Aaron Darling</vendor>
+        <offline-allowed/>
+    </information>
+    <security>
+      <all-permissions/>
+    </security>
+    <resources>
+        <j2se version="1.5+" href="http://java.sun.com/products/autodl/j2se" java-vm-args="-Xmx300m"/>
+        <jar href="http://edhar.genomecenter.ucdavis.edu/~koadman/phylosift/forester/forester.jar" main="true" />
+    </resources>
+    <application-desc main-class="org.forester.archaeopteryx.Archaeopteryx">
+		<argument>SRR492065.10Ksubset.fastq.xml</argument>
+    </application-desc>
+    <update check="background"/>
+</jnlp>	
